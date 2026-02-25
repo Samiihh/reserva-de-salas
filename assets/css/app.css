@@ -132,6 +132,14 @@ main.container{ flex: 1; }
   text-decoration: none;
 }
 
+/* reset para botão com estilo de link no nav */
+button.app-nav__link {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
 .app-nav__link:hover {
   background: var(--bg);
   color: var(--primary);

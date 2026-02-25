@@ -1,9 +1,7 @@
-<?php include 'includes/header.php'; ?>
-
 <main class="container mapa-page">
   <header class="mapa-header">
     <h1 class="page-title">Mapa de Salas</h1>
-    <p class="mapa-intro">Todas as salas disponíveis para reserva. Faça <a href="login.php">login</a> para reservar.</p>
+    <p class="mapa-intro">Todas as salas disponíveis para reserva. Faça <a href="<?= APP_PATH ?>/auth/login.php">login</a> para reservar.</p>
   </header>
 
   <section class="mapa-table-section">
@@ -66,5 +64,3 @@
     </div>
   </section>
 </main>
-
-<?php include 'includes/footer.php'; ?>

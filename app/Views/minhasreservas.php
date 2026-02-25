@@ -1,5 +1,3 @@
-<?php include 'includes/header.php'; ?>
-
 <main class="container minhas-reservas-page">
   <header class="minhas-reservas-header">
     <h1 class="page-title">Minhas Reservas</h1>
@@ -25,7 +23,6 @@
   </section>
 
   <section class="minhas-reservas-table-section">
-
     <div class="table-wrapper card">
       <table class="minhas-reservas-table">
         <thead>
@@ -57,4 +54,3 @@
     </div>
   </section>
 </main>
-<?php include 'includes/footer.php'; ?>

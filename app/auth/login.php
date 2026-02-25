@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../../config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,9 +8,8 @@
     <meta charset="UTF-8">
     <title>Login - Sistema de Reserva de Salas</title>
 
-    <!-- CAMINHO ABSOLUTO COM NOME DO PROJETO -->
-    <link rel="stylesheet" href="/reserva-de-salas/assets/css/base.css">
-    <link rel="stylesheet" href="/reserva-de-salas/assets/css/auth.css">
+    <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/base.css">
+    <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/auth.css">
 </head>
 
 <body class="auth-body">
@@ -34,7 +36,11 @@
 
         <p class="auth-link">
             Não tem conta?
-            <a href="register.php">Cadastre-se</a>
+            <a href="<?= BASE_URL ?>/app/auth/register.php">Cadastre-se</a>
+        </p>
+
+        <p class="auth-link">
+            <a href="<?= BASE_URL ?>/index.php?c=mapa">← Voltar ao mapa</a>
         </p>
     </div>
 
@@ -44,7 +50,7 @@
         document.getElementById('form-login').addEventListener('submit', function (e) {
           e.preventDefault();
           sessionStorage.setItem('logado', '1');
-          window.location.href = 'mapa.php';
+          window.location.href = '<?= BASE_URL ?>/index.php';
         });
       })();
     </script>

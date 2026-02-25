@@ -1,11 +1,14 @@
+<?php
+require_once __DIR__ . '/../../config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Cadastro - Sistema de Reserva de Salas</title>
 
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/auth.css">
+    <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/base.css">
+    <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/auth.css">
 </head>
 
 <body class="auth-body">
@@ -42,7 +45,7 @@
 
         <p class="auth-link">
             Já tem conta?
-            <a href="login.php">Entrar</a>
+            <a href="<?= BASE_URL ?>/app/auth/login.php">Entrar</a>
         </p>
     </div>
 
