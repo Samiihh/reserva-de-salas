@@ -1,0 +1,82 @@
+/* =====================
+   RESET / BASE
+===================== */
+@import 'base.css';
+
+/* =====================
+   AUTH (login/register)
+===================== */
+@import 'auth.css';
+
+/* =====================
+   APP (header/footer/nav)
+===================== */
+@import 'app.css';
+
+/* =====================
+   MINHAS RESERVAS
+===================== */
+@import 'minhasreservas.css';
+
+/* =====================
+   MAPA DE SALAS (página principal pública)
+===================== */
+@import 'mapa.css';
+
+
+
+/* Componentes globais — cards e botões */
+.card {
+  background: var(--card, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  width: auto;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+button.btn {
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.btn-primary {
+  background: var(--primary, #2563eb);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--primaryDark, #1e3a8a);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.btn-outline {
+  background: var(--card, #fff);
+  border-color: var(--border, #d1d5db);
+  color: var(--text, #111827);
+}
+
+.btn-outline:hover {
+  background: var(--bg, #f3f4f6);
+  border-color: #9ca3af;
+}

@@ -1,0 +1,227 @@
+/* =========================
+   DASHBOARD — ESTILO MODERNO
+========================= */
+
+/* Dashboard usa mais largura para os cards não ficarem espremidos */
+.minhas-reservas-page.container {
+  max-width: 1320px;
+  width: 100%;
+}
+
+.minhas-reservas-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Cabeçalho: título à esquerda, botão Nova Reserva à direita */
+.minhas-reservas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.page-title {
+  font-size: clamp(1.75rem, 4vw, 2rem);
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.03em;
+  color: var(--text, #111827);
+  text-align: left;
+}
+
+.btn-nova-reserva {
+  flex-shrink: 0;
+}
+
+/* Grid dos cards — ocupa toda a largura, 3 colunas no desktop */
+.minhas-reservas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .minhas-reservas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .minhas-reservas-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-nova-reserva {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .minhas-reservas-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards de estatística — visual moderno */
+.stat-card {
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  min-height: 160px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--card, #fff);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary, #2563eb), var(--primaryDark, #1e3a8a));
+  border-radius: 4px 0 0 4px;
+}
+
+.stat-card:nth-child(2)::before {
+  background: linear-gradient(180deg, #059669, #047857);
+}
+
+.stat-card:nth-child(3)::before {
+  background: linear-gradient(180deg, #7c3aed, #5b21b6);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.stat-label {
+  color: var(--muted, #6b7280);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-value {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 800;
+  color: var(--primary, #2563eb);
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.stat-value--text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text, #111827);
+  letter-spacing: -0.02em;
+}
+
+.stat-hint {
+  color: var(--muted, #6b7280);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* Seção da tabela de reservas (abaixo dos cards) */
+.minhas-reservas-table-section {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.minhas-reservas-table-section .section-title {
+  margin: 0 0 1rem;
+}
+
+.table-wrapper {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.minhas-reservas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.minhas-reservas-table th,
+.minhas-reservas-table td {
+  padding: 0.875rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.minhas-reservas-table th {
+  font-weight: 700;
+  color: var(--muted, #6b7280);
+  background: var(--bg, #f9fafb);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.minhas-reservas-table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.minhas-reservas-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge-confirmada {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-pendente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.btn-link {
+  color: var(--primary, #2563eb);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  transition: color 0.2s ease;
+}
+
+.btn-link:hover {
+  color: var(--primaryDark, #1e3a8a);
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--text, #111827);
+  letter-spacing: -0.01em;
+}

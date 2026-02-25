@@ -1,0 +1,117 @@
+/* =========================
+   MAPA DE SALAS — Página principal (pública)
+========================= */
+
+.mapa-page.container {
+  max-width: 1320px;
+  width: 100%;
+}
+
+.mapa-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mapa-header {
+  margin-bottom: 1.75rem;
+}
+
+.mapa-header .page-title {
+  font-size: clamp(1.75rem, 4vw, 2rem);
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.03em;
+  color: var(--text, #111827);
+}
+
+.mapa-intro {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--muted, #6b7280);
+  line-height: 1.5;
+}
+
+.mapa-intro a {
+  color: var(--primary, #2563eb);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mapa-intro a:hover {
+  text-decoration: underline;
+}
+
+/* Tabela de salas */
+.mapa-table-section {
+  width: 100%;
+}
+
+.table-wrapper {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mapa-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.mapa-table th,
+.mapa-table td {
+  padding: 0.875rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.mapa-table th {
+  font-weight: 700;
+  color: var(--muted, #6b7280);
+  background: var(--bg, #f9fafb);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mapa-table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.mapa-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Badges de status no mapa */
+.badge-disponivel {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-em-uso {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Botão pequeno (Reservar na tabela) */
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* Header público: link ativo */
+.app-header--public .app-nav__link--active {
+  background: var(--bg, #f3f4f6);
+  color: var(--primary, #2563eb);
+}
+
+@media (max-width: 768px) {
+  .mapa-table-section {
+    overflow-x: auto;
+  }
+
+  .mapa-table {
+    min-width: 600px;
+  }
+}

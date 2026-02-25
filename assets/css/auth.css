@@ -1,0 +1,120 @@
+/* =========================
+   AUTH LAYOUT (Login/Register)
+========================= */
+
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    padding: 20px;
+  }
+  
+  /* CARD */
+  .auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* TITLES */
+  .auth-card h1 {
+    font-size: 18px;
+    color: #1e3a8a;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  
+  .auth-card h2 {
+    font-size: 22px;
+    color: #111827;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  /* FORM GROUP */
+  .form-group {
+    margin-bottom: 18px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  
+  /* INPUT */
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  }
+  
+  /* BUTTON */
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-top: 5px;
+  }
+  
+  .btn-primary:hover {
+    background: #1e3a8a;
+  }
+  
+  /* LINKS */
+  .auth-link {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #374151;
+    text-align: center;
+  }
+  
+  .auth-link a {
+    color: #2563eb;
+    font-weight: 700;
+  }
+  
+  .auth-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ALERTS (opcional) */
+  .alert {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  
+  .alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+  }
+  
+  .alert-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }

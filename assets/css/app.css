@@ -1,0 +1,407 @@
+/* =========================
+   APP.CSS (HEADER + FOOTER + LAYOUT)
+   Substitua o arquivo inteiro por este
+========================= */
+
+:root{
+  --max: 1100px;
+  --pad: 18px;
+
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --border: #e5e7eb;
+
+  --text: #111827;
+  --muted: #6b7280;
+
+  --primary: #2563eb;
+  --primaryDark: #1e3a8a;
+
+  --danger: #ef4444;
+  --dangerBg: #fee2e2;
+}
+
+html, body { height: 100%; }
+
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Container padrão do app */
+.container{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 26px var(--pad) 36px;
+}
+
+/* Main cresce e empurra o footer */
+main.container{ flex: 1; }
+
+/* =========================
+   HEADER
+========================= */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.app-header__container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0.75rem var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Brand — logo clicável */
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.app-brand:hover {
+  opacity: 0.9;
+}
+
+.app-brand__logo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primaryDark) 100%);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.app-brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.app-brand__title {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.app-brand__subtitle {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Nav */
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.app-nav__link {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.app-nav__link:hover {
+  background: var(--bg);
+  color: var(--primary);
+}
+
+.app-nav__link--primary {
+  background: var(--primary);
+  color: #fff;
+  margin-left: 0.25rem;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+.app-nav__link--primary:hover {
+  background: var(--primaryDark);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.35);
+}
+
+/* Menu: visitante vs logado (sem back – controlado por JS/sessionStorage) */
+.app-header .nav-logado {
+  display: none !important;
+  align-items: center;
+  gap: inherit;
+}
+
+.app-header .nav-guest {
+  display: flex;
+  align-items: center;
+}
+
+body.user-logado .app-header .nav-guest {
+  display: none !important;
+}
+
+body.user-logado .app-header .nav-logado {
+  display: flex !important;
+}
+
+/* Usuário */
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.app-user__greeting {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  padding: 0.375rem 0;
+}
+
+.app-user__greeting strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.app-user__logout {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--danger);
+  padding: 0.5rem 0.875rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.app-user__logout:hover {
+  background: var(--dangerBg);
+  color: #dc2626;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.app-footer{
+  margin-top: 28px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 18px rgba(0,0,0,.04);
+}
+
+/* “linha” superior discreta */
+.app-footer::before{
+  content:"";
+  display:block;
+  height:3px;
+  background: linear-gradient(90deg, var(--primary), var(--primaryDark));
+}
+
+.app-footer__container{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 16px var(--pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #374151;
+  font-size: 13px;
+}
+
+.app-footer__muted{
+  color: var(--muted);
+}
+
+/* =========================
+   MODAL NOVA RESERVA
+========================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.modal--aberto {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.modal__box {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--card, #fff);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal__titulo {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal__fechar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.modal__fechar:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.modal__body {
+  padding: 1.5rem;
+}
+
+.modal__body .form-group {
+  margin-bottom: 1rem;
+}
+
+.modal__body .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.modal__body label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.375rem;
+}
+
+.modal__body input,
+.modal__body select,
+.modal__body textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+}
+
+.modal__body textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.modal__body .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .modal__body .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 0 0 16px 16px;
+}
+
+.modal__cancelar {
+  flex-shrink: 0;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px){
+  .app-header__container{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .app-brand,
+  .app-user{
+    min-width: 0;
+    width: 100%;
+  }
+
+  .app-user{
+    justify-content: space-between;
+  }
+
+  .app-nav{
+    width: 100%;
+  }
+}
