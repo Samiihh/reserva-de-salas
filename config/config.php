@@ -27,8 +27,12 @@ define('INCLUDES_PATH', BASE_PATH . '/includes');
 // Nome do script em execução (ex: /reserva-de-salas/index.php ou /reserva-de-salas/app/auth/login.php)
 $script = $_SERVER['SCRIPT_NAME'] ?? '';
 
-// Se o script estiver dentro de /app/ (ex: login.php), a base é tudo antes de /app/
-// Senão (ex: index.php na raiz), a base é o diretório do script
+// Define a base da URL conforme o script em execução:
+// - Script dentro de /app/ (ex: /reserva-de-salas/app/auth/login.php):
+//   strpos() encontra '/app/' e substr() pega tudo antes → base = /reserva-de-salas
+//   Assim, links e assets funcionam igual em qualquer página dentro de app/
+// - Script na raiz (ex: /reserva-de-salas/index.php):
+//   dirname($script) retorna o diretório do script → base = /reserva-de-salas
 if (strpos($script, '/app/') !== false) {
     $baseUrl = substr($script, 0, strpos($script, '/app/'));
 } else {
