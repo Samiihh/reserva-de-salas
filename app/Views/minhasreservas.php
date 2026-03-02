@@ -4,13 +4,25 @@
  *
  * Só exibe os dados. A variável $reservas vem do MinhasReservasController,
  * com sala_nome, data_formatada, horario_formatado, badge_texto e badge_classe.
+ * Mensagens de sucesso/erro vêm da sessão (após criar reserva via ReservaController).
  */
 // Se o controller não enviar $reservas, usamos array vazio para não dar erro no foreach.
 if (!isset($reservas)) {
     $reservas = [];
 }
+// Mensagens definidas pelo ReservaController após redirect (criar reserva)
+$erroReserva = $_SESSION['erro_reserva'] ?? null;
+$sucessoReserva = $_SESSION['sucesso_reserva'] ?? null;
+if (isset($_SESSION['erro_reserva'])) unset($_SESSION['erro_reserva']);
+if (isset($_SESSION['sucesso_reserva'])) unset($_SESSION['sucesso_reserva']);
 ?>
 <main class="container minhas-reservas-page">
+  <?php if ($erroReserva): ?>
+  <p class="auth-erro"><?= htmlspecialchars($erroReserva) ?></p>
+  <?php endif; ?>
+  <?php if ($sucessoReserva): ?>
+  <p class="auth-sucesso"><?= htmlspecialchars($sucessoReserva) ?></p>
+  <?php endif; ?>
   <header class="minhas-reservas-header">
     <h1 class="page-title">Minhas Reservas</h1>
     <button type="button" class="btn btn-primary btn-nova-reserva abrir-modal-nova-reserva">+ Nova Reserva</button>
@@ -24,7 +36,7 @@ if (!isset($reservas)) {
     </div>
     <div class="card stat-card">
       <p class="stat-label">Salas ativas</p>
-      <p class="stat-value">5</p>
+      <p class="stat-value"><?= isset($salas) ? count($salas) : 0 ?></p>
       <p class="stat-hint">disponíveis para reserva</p>
     </div>
     <div class="card stat-card">

@@ -46,13 +46,8 @@
       if (e.key === 'Escape') fecharModal();
     });
 
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        fecharModal();
-        form.reset();
-      });
-    }
+    // Formulário envia POST para index.php?c=reserva&a=criar; não interceptamos o submit para a página recarregar e exibir a mensagem de sucesso/erro.
+    // (Se quiser enviar via AJAX no futuro, aqui seria o lugar de fazer fetch e depois fecharModal() + form.reset().)
   }
 
   function init() {

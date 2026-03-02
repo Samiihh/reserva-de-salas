@@ -1,4 +1,8 @@
-<!-- Modal Nova Reserva -->
+<!-- Modal Nova Reserva: formulário envia POST para ?c=reserva&a=criar (ReservaController::criar) -->
+<?php
+$urlCriarReserva = (BASE_URL === '' ? '' : BASE_URL . '/') . 'index.php?c=reserva&a=criar';
+$salasModal = isset($salas) ? $salas : [];
+?>
 <div id="modal-nova-reserva" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-nova-reserva-titulo" aria-hidden="true">
   <div class="modal__overlay" id="fechar-modal-nova-reserva"></div>
   <div class="modal__box">
@@ -6,17 +10,14 @@
       <h2 id="modal-nova-reserva-titulo" class="modal__titulo">Nova Reserva</h2>
       <button type="button" class="modal__fechar" id="fechar-modal-nova-reserva-btn" aria-label="Fechar">×</button>
     </div>
-    <form class="modal__body" id="form-nova-reserva">
+    <form class="modal__body" id="form-nova-reserva" action="<?= htmlspecialchars($urlCriarReserva) ?>" method="post">
       <div class="form-group">
         <label for="nova-reserva-sala">Sala</label>
         <select id="nova-reserva-sala" name="sala" required>
           <option value="">Selecione a sala</option>
-          <option value="101">Sala 101</option>
-          <option value="102">Sala 102</option>
-          <option value="201">Sala 201</option>
-          <option value="202">Sala 202</option>
-          <option value="203">Sala 203</option>
-          <option value="auditorio">Auditório A</option>
+          <?php foreach ($salasModal as $sala): ?>
+          <option value="<?= (int) $sala['id'] ?>"><?= htmlspecialchars($sala['nome']) ?></option>
+          <?php endforeach; ?>
         </select>
       </div>
       <div class="form-row">
@@ -45,4 +46,4 @@
   </div>
 </div>
 
-<script src="./assets/js/app.js"></script>
+<script src="<?= ASSETS_URL ?>/js/app.js"></script>

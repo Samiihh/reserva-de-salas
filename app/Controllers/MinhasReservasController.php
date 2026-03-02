@@ -4,21 +4,31 @@
  * Controller Minhas Reservas - Aula 2
  *
  * Responsável por:
- * - Buscar as reservas no Model (ReservaModel).
+ * - Exigir login (rota protegida): redireciona para login se não logado.
+ * - Buscar as reservas do usuário logado no Model (ReservaModel::listarPorUsuario).
  * - Preparar os dados para a view (status em badge, data e horário formatados).
+ * - Carregar lista de salas para o modal "Nova Reserva" (select no header).
  * - Incluir header, view e footer.
  */
 
 class MinhasReservasController
 {
     /**
-     * Action principal: exibe a página "Minhas Reservas" com dados do banco.
+     * Action principal: exibe a página "Minhas Reservas" com as reservas do usuário logado.
+     * Se não estiver logado, redireciona para a tela de login.
      */
     public function index(): void
     {
-        // Busca todas as reservas no banco (com nome da sala via JOIN no Model).
+        // Proteção de rota: só usuário logado pode ver minhas reservas
+        exigirLogin();
+
+        // Busca apenas as reservas do usuário logado (com nome da sala via JOIN no Model)
         $reservaModel = new ReservaModel();
-        $reservas = $reservaModel->listarTodas();
+        $reservas = $reservaModel->listarPorUsuario((int) $_SESSION['usuario_id']);
+
+        // Carrega as salas para o select do modal "Nova Reserva" (incluído no header)
+        $salaModel = new SalaModel();
+        $salas = $salaModel->listarTodas();
 
         // Prepara cada reserva para a view: badge (texto/classe) e data/horário em formato de exibição.
         foreach ($reservas as &$reserva) {

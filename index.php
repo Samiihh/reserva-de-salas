@@ -19,6 +19,9 @@ require_once CONFIG_PATH . '/conexao.php';
 // Registra o autoload para carregar Controllers e Models automaticamente
 require_once APP_PATH . '/autoload.php';
 
+// Funções auxiliares (urlIndex, exigirLogin) usadas pelos controllers
+require_once APP_PATH . '/helpers.php';
+
 // Lê da URL os parâmetros c=controller e a=action (ex: index.php?c=mapa&a=index)
 // Se não forem passados, usa 'mapa' como controller e 'index' como action
 $controllerName = $_GET['c'] ?? 'mapa';
