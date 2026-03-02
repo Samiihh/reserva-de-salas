@@ -1,9 +1,9 @@
 (function () {
   function initAuth() {
+    // O menu logado é controlado pelo PHP (sessão): o body já vem com class="user-logado" quando logado.
+    // Não remover essa classe aqui, senão o menu some após o carregamento.
     if (sessionStorage.getItem('logado')) {
       document.body.classList.add('user-logado');
-    } else {
-      document.body.classList.remove('user-logado');
     }
   }
 

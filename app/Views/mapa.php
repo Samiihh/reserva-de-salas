@@ -12,11 +12,18 @@
 if (!isset($salas)) {
     $salas = [];
 }
+// Aula 3: usado para exibir link "Faça login para reservar" quando o usuário não está logado
+$logado = isset($_SESSION['usuario_id']);
 ?>
 <main class="container mapa-page">
   <header class="mapa-header">
     <h1 class="page-title">Mapa de Salas</h1>
-    <p class="mapa-intro">Todas as salas disponíveis para reserva. Faça <a href="<?= APP_PATH ?>/auth/login.php">login</a> para reservar.</p>
+    <p class="mapa-intro">
+      Todas as salas disponíveis para reserva.
+      <?php if (!$logado): ?>
+        Faça <a href="<?= (BASE_URL === '' ? '' : BASE_URL . '/') ?>index.php?c=auth&a=login">login</a> para reservar.
+      <?php endif; ?>
+    </p>
   </header>
 
   <section class="mapa-table-section">

@@ -140,6 +140,12 @@ button.app-nav__link {
   font-family: inherit;
 }
 
+/* Nova Reserva: fundo azul sempre (o reset acima não pode sobrescrever) */
+button.app-nav__link.app-nav__link--primary {
+  background: var(--primary);
+  color: #fff;
+}
+
 .app-nav__link:hover {
   background: var(--bg);
   color: var(--primary);
