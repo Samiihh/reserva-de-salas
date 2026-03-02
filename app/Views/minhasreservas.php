@@ -1,3 +1,15 @@
+<?php
+/**
+ * View Minhas Reservas - Aula 2
+ *
+ * Só exibe os dados. A variável $reservas vem do MinhasReservasController,
+ * com sala_nome, data_formatada, horario_formatado, badge_texto e badge_classe.
+ */
+// Se o controller não enviar $reservas, usamos array vazio para não dar erro no foreach.
+if (!isset($reservas)) {
+    $reservas = [];
+}
+?>
 <main class="container minhas-reservas-page">
   <header class="minhas-reservas-header">
     <h1 class="page-title">Minhas Reservas</h1>
@@ -7,8 +19,8 @@
   <section class="minhas-reservas-grid">
     <div class="card stat-card">
       <p class="stat-label">Minhas reservas</p>
-      <p class="stat-value">12</p>
-      <p class="stat-hint">últimos 30 dias</p>
+      <p class="stat-value"><?= count($reservas) ?></p>
+      <p class="stat-hint">no total</p>
     </div>
     <div class="card stat-card">
       <p class="stat-label">Salas ativas</p>
@@ -17,8 +29,8 @@
     </div>
     <div class="card stat-card">
       <p class="stat-label">Próxima reserva</p>
-      <p class="stat-value stat-value--text">Sala 101</p>
-      <p class="stat-hint">Hoje, 14:00–16:00</p>
+      <p class="stat-value stat-value--text"><?= !empty($reservas) ? htmlspecialchars($reservas[0]['sala_nome']) : '—' ?></p>
+      <p class="stat-hint"><?= !empty($reservas) ? $reservas[0]['data_formatada'] . ', ' . $reservas[0]['horario_formatado'] : 'Nenhuma' ?></p>
     </div>
   </section>
 
@@ -35,20 +47,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Sala 101</td>
-            <td>24/02/2025</td>
-            <td>14:00 – 16:00</td>
-            <td><span class="badge badge-confirmada">Confirmada</span></td>
-            <td><a href="#" class="btn-link">Detalhes</a></td>
-          </tr>
-          <tr>
-            <td>Sala 203</td>
-            <td>25/02/2025</td>
-            <td>09:00 – 11:00</td>
-            <td><span class="badge badge-pendente">Pendente</span></td>
-            <td><a href="#" class="btn-link">Detalhes</a></td>
-          </tr>
+          <?php
+          // htmlspecialchars() (PHP): escapa < > " ' & para evitar XSS. Cada $reserva tem os dados já preparados pelo controller.
+          foreach ($reservas as $reserva):
+          ?>
+            <tr>
+              <td><?= htmlspecialchars($reserva['sala_nome']) ?></td>
+              <td><?= htmlspecialchars($reserva['data_formatada']) ?></td>
+              <td><?= htmlspecialchars($reserva['horario_formatado']) ?></td>
+              <td><span class="badge <?= $reserva['badge_classe'] ?? '' ?>"><?= htmlspecialchars($reserva['badge_texto'] ?? '') ?></span></td>
+              <td><a href="#" class="btn-link">Detalhes</a></td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>

@@ -1,3 +1,18 @@
+<?php
+/**
+ * View do Mapa de Salas - Aula 2
+ *
+ * Este arquivo só exibe os dados. A variável $salas vem do MapaController,
+ * já com badge_texto e badge_classe preenchidos (lógica feita no controller).
+ *
+ * Cada item de $salas tem: nome, capacidade, andar, recursos, status, badge_texto, badge_classe.
+ */
+// Se o controller não enviar $salas (ex.: erro ou rota diferente), usamos array vazio
+// para evitar erro "undefined variable" ou "invalid argument" no foreach abaixo.
+if (!isset($salas)) {
+    $salas = [];
+}
+?>
 <main class="container mapa-page">
   <header class="mapa-header">
     <h1 class="page-title">Mapa de Salas</h1>
@@ -17,48 +32,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>Sala 101</strong></td>
-            <td>10 pessoas</td>
-            <td>1º andar</td>
-            <td>Projetor, Quadro branco</td>
-            <td><span class="badge badge-disponivel">Disponível</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sala 102</strong></td>
-            <td>8 pessoas</td>
-            <td>1º andar</td>
-            <td>TV, Videoconferência</td>
-            <td><span class="badge badge-disponivel">Disponível</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sala 201</strong></td>
-            <td>20 pessoas</td>
-            <td>2º andar</td>
-            <td>Projetor, Quadro, Ar condicionado</td>
-            <td><span class="badge badge-em-uso">Em uso</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sala 202</strong></td>
-            <td>12 pessoas</td>
-            <td>2º andar</td>
-            <td>Quadro branco</td>
-            <td><span class="badge badge-disponivel">Disponível</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sala 203</strong></td>
-            <td>6 pessoas</td>
-            <td>2º andar</td>
-            <td>Videoconferência</td>
-            <td><span class="badge badge-disponivel">Disponível</span></td>
-          </tr>
-          <tr>
-            <td><strong>Auditório A</strong></td>
-            <td>50 pessoas</td>
-            <td>Térreo</td>
-            <td>Projetor, Som, Ar condicionado</td>
-            <td><span class="badge badge-disponivel">Disponível</span></td>
-          </tr>
+          <?php
+          // Percorre cada sala enviada pelo controller; $sala é um array com os dados de uma sala.
+          // htmlspecialchars() (função nativa PHP): escapa < > " ' & para o navegador não interpretar como HTML/JS, evitando XSS. UTF-8 no header só define encoding; a segurança na saída é com esse escape.
+          foreach ($salas as $sala):
+          ?>
+            <tr>
+              <td><strong><?= htmlspecialchars($sala['nome']) ?></strong></td>
+              <td><?= (int) $sala['capacidade'] ?> pessoas</td>
+              <td><?= htmlspecialchars($sala['andar']) ?></td>
+              <td><?= htmlspecialchars($sala['recursos'] ?? '') ?></td>
+              <td><span class="badge <?= $sala['badge_classe'] ?? '' ?>"><?= htmlspecialchars($sala['badge_texto'] ?? '') ?></span></td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>

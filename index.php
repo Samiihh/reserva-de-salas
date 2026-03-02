@@ -8,6 +8,9 @@
 // Carrega as constantes do projeto (BASE_PATH, APP_PATH, etc.)
 require_once __DIR__ . '/config/config.php';
 
+// Garante que a conexão PDO esteja disponível antes de qualquer Controller/Model
+require_once CONFIG_PATH . '/conexao.php';
+
 // Registra o autoload para carregar Controllers e Models automaticamente
 require_once APP_PATH . '/autoload.php';
 
