@@ -1,12 +1,20 @@
 <?php
 
 /**
- * Front Controller - Aula 1
+ * Front Controller - Aula 1 + Aula 3
  * Ponto único de entrada: recebe a requisição e encaminha para o Controller.
  */
 
-// Carrega as constantes do projeto (BASE_PATH, APP_PATH, etc.)
+// Carrega as constantes do projeto (BASE_PATH, APP_PATH, BASE_URL, etc.)
 require_once __DIR__ . '/config/config.php';
+
+// Aula 3: inicia a sessão para guardar o usuário logado. Deve vir antes de qualquer saída (echo, HTML).
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Conexão com o banco: garante que $pdo exista antes dos controllers (Auth e Models usam).
+require_once CONFIG_PATH . '/conexao.php';
 
 // Registra o autoload para carregar Controllers e Models automaticamente
 require_once APP_PATH . '/autoload.php';
