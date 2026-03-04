@@ -60,11 +60,11 @@ class AuthController
             }
 
             // Login OK: grava dados na sessão e redireciona para o mapa
-            $_SESSION['usuario_id'] = (int) $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
-            unset($_SESSION['erro_login']);
-            header('Location: ' . $this->urlIndex() . '?c=mapa');
-            exit;
+            $_SESSION['usuario_id'] = (int) $usuario['id'];   // id do usuário (int) para uso em consultas e checagem de dono
+            $_SESSION['usuario_nome'] = $usuario['nome'];     // nome para exibir na interface (ex.: "Olá, João")
+            unset($_SESSION['erro_login']);                   // remove mensagem de erro de tentativa anterior
+            header('Location: ' . $this->urlIndex() . '?c=mapa'); // redireciona para a página do mapa
+            exit;                                             // interrompe a execução para o redirect ter efeito
         }
 
         // --- Requisição GET: exibir formulário de login ---
@@ -81,12 +81,12 @@ class AuthController
 
         // Remove o cookie de sessão do navegador (segurança)
         if (ini_get('session.use_cookies')) {
-            $p = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000, $p['path'], $p['domain'], $p['secure'], $p['httponly']);
+            $p = session_get_cookie_params();  // path, domain, secure, httponly usados na criação do cookie
+            setcookie(session_name(), '', time() - 42000, $p['path'], $p['domain'], $p['secure'], $p['httponly']); // valor vazio + data no passado = cookie expirado/apagado
         }
 
-        session_destroy();
-        header('Location: ' . $this->urlIndex() . '?c=mapa');
+        session_destroy();  // encerra a sessão no servidor e apaga os dados ($_SESSION)
+        header('Location: ' . $this->urlIndex() . '?c=mapa');  // redireciona para o mapa (usuário “deslogado”)
         exit;
     }
 
@@ -128,9 +128,9 @@ class AuthController
             try {
                 // password_hash gera um hash seguro para guardar no banco (nunca guardar senha em texto puro)
                 $model->criar($nome, $email, password_hash($senha, PASSWORD_DEFAULT));
-                unset($_SESSION['erro_cadastro']);
-                $_SESSION['sucesso_cadastro'] = 'Conta criada. Faça login.';
-                header('Location: ' . $this->urlIndex() . '?c=auth&a=login');
+                unset($_SESSION['erro_cadastro']);  // remove mensagem de erro de tentativa anterior (se houver)
+                $_SESSION['sucesso_cadastro'] = 'Conta criada. Faça login.';  // mensagem exibida na tela de login
+                header('Location: ' . $this->urlIndex() . '?c=auth&a=login');  // redireciona para o formulário de login
                 exit;
             } catch (PDOException $e) {
                 $msg = $e->getMessage();

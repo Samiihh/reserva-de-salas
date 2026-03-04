@@ -11,8 +11,13 @@ require_once CONFIG_PATH . '/conexao.php';
 
 class UsuarioModel
 {
+    /** @var PDO Conexão com o banco de dados (injetada no construtor). */
     private PDO $pdo;
 
+    /**
+     * Construtor: usa a conexão PDO global definida em config/conexao.php.
+     * Assim o model não cria a conexão; ela é compartilhada pela aplicação.
+     */
     public function __construct()
     {
         global $pdo;
@@ -27,10 +32,12 @@ class UsuarioModel
      */
     public function buscarPorEmail(string $email): ?array
     {
-        $sql = "SELECT id, nome, email, senha FROM usuarios WHERE email = ? LIMIT 1";
+        $sql = "SELECT id, nome, email, senha FROM usuarios WHERE email = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$email]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        // fetch() retorna um array com a linha ou false quando não há resultado.
+        $row = $stmt->fetch();
+        // Converte false em null para o retorno ser sempre array ou null (nunca false).
         return $row ?: null;
     }
 
